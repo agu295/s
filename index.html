@@ -37,13 +37,33 @@
             cursor: pointer;
             z-index: 1000;
         }
+
+        .btn-container {
+            position: absolute;
+            top: 60px;
+            right: 10px;
+            display: flex;
+            flex-direction: column;
+            z-index: 1000;
+        }
+
+        .btn-container button {
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 
 <body>
 
     <!-- Botón para activar pantalla completa -->
-    <button id="fullscreenButton" onclick="toggleFullscreen()">X</button>
+    <button id="fullscreenButton" onclick="toggleFullscreen()">Pantalla Completa</button>
+
+    <!-- Contenedor de los botones para cambiar el iframe -->
+    <div class="btn-container">
+        <button class="btn btn-primary" onclick="updateIframe(atob('aHR0cHM6Ly9sYTEwaGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT1kc3BvcnRz'))">Canal 1</button>
+        <button class="btn btn-primary" onclick="updateIframe(atob('aHR0cHM6Ly9sYTEwaGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT10bnRzcG9ydHM='))">Canal 2</button>
+        <button class="btn btn-primary" onclick="updateIframe(atob('aHR0cHM6Ly9sYTEwaGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT1lc3BucHJlbWl1bQ=='))">Canal 3</button>
+    </div>
 
     <!-- Contenedor del iframe -->
     <div id="iframe-container" class="overlay" style="display: none;">
@@ -53,8 +73,6 @@
     <script src="https://jwpsrv.com/library/FfMxTl3oEeSEiiIACxmInQ.js"></script>
 
     <script>
-       // updateIframe(atob('aHR0cHM6Ly9sYTEwaGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT1kc3BvcnRz'));
- updateIframe(atob('aHR0cHM6Ly9sYTEwaGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT10bnRzcG9ydHM='));
         // Función para actualizar el iframe con una nueva URL
         function updateIframe(url, normal = false) {
             const iframe = document.getElementById('videoFrame');

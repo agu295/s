@@ -38,11 +38,26 @@
             z-index: 1000;
         }
 
+        .hamburger-menu {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .hamburger-menu div {
+            width: 30px;
+            height: 3px;
+            background-color: white;
+            margin: 5px 0;
+        }
+
         .btn-container {
             position: absolute;
             top: 60px;
-            right: 10px;
-            display: flex;
+            left: 10px;
+            display: none;
             flex-direction: column;
             z-index: 1000;
         }
@@ -50,19 +65,30 @@
         .btn-container button {
             margin-bottom: 10px;
         }
+
+        .show {
+            display: flex;
+        }
     </style>
 </head>
 
 <body>
 
     <!-- Botón para activar pantalla completa -->
-    <button id="fullscreenButton" onclick="toggleFullscreen()">X</button>
+    <button id="fullscreenButton" onclick="toggleFullscreen()">Pantalla Completa</button>
+
+    <!-- Menú hamburguesa -->
+    <div class="hamburger-menu" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
 
     <!-- Contenedor de los botones para cambiar el iframe -->
-    <div class="btn-container">
-        <button class="btn btn-primary" onclick="updateIframe(atob('aHR0cHM6Ly9sYTEwaGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT1kc3BvcnRz'))">1</button>
-        <button class="btn btn-primary" onclick="updateIframe(atob('aHR0cHM6Ly9sYTEwaGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT10bnRzcG9ydHM='))">2</button>
-        <button class="btn btn-primary" onclick="updateIframe(atob('aHR0cHM6Ly9sYTEwaGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT1lc3BucHJlbWl1bQ=='))">3</button>
+    <div id="btn-container" class="btn-container">
+        <button class="btn btn-primary" onclick="updateIframe(atob('aHR0cHM6Ly9sYTEwaGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT1kc3BvcnRz'))">Canal 1</button>
+        <button class="btn btn-primary" onclick="updateIframe(atob('aHR0cHM6Ly9sYTEwaGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT10bnRzcG9ydHM='))">Canal 2</button>
+        <button class="btn btn-primary" onclick="updateIframe(atob('aHR0cHM6Ly9sYTEwaGQuY29tL3Zpdm8vY2FuYWwucGhwP3N0cmVhbT1lc3BucHJlbWl1bQ=='))">Canal 3</button>
     </div>
 
     <!-- Contenedor del iframe -->
@@ -74,7 +100,7 @@
 
     <script>
         // Función para actualizar el iframe con una nueva URL
-        function updateIframe(url, normal = false) {
+        function updateIframe(url) {
             const iframe = document.getElementById('videoFrame');
             iframe.src = url;
             document.getElementById('iframe-container').style.display = 'flex';
@@ -87,6 +113,12 @@
             } else if (document.exitFullscreen) {
                 document.exitFullscreen();
             }
+        }
+
+        // Función para mostrar/ocultar el menú
+        function toggleMenu() {
+            const menu = document.getElementById('btn-container');
+            menu.classList.toggle('show');
         }
     </script>
 
